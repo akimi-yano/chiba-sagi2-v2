@@ -138,7 +138,7 @@ const flowData = {
         advice: "ATMに着いてから電話させるのは、周囲に相談させないためです。",
         image: IMAGES.POLICE,
         choices: [
-            { text: "指示通りATMに向かう", next: "end_atm_scam", style: "btn-danger" },
+            { text: "ATMヘ行く", next: "end_atm_scam", style: "btn-danger" },
             { text: "ATMへ行かない", next: "end_hangup_safe", style: "btn-safe" }
         ]
     },
