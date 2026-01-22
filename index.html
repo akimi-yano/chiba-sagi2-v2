@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>還付金詐欺撃退マスター</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <h1>👮 ケイサツ相談ガイド（還付金詐欺編）</h1>
+            <p>電話がかかってきたら、まずはここを確認！</p>
+        </header>
+
+        <main id="game-area">
+            <div class="scene-container">
+                <img id="scene-image" src="" alt="Scene" class="scene-visual">
+
+                <div class="dialog-box">
+                    <div class="speaker-name" id="speaker-name">状況</div>
+                    <div class="message-content" id="message-text"></div>
+
+                    <div class="choices-area" id="choices-container">
+                        <!-- Choices injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="advice-box" class="advice-box hidden"></div>
+        </main>
+
+        <footer>
+            <button id="back-btn" class="btn btn-secondary hidden" onclick="goBack()">一つ前に戻る</button>
+            <button id="reset-btn" class="btn btn-secondary hidden" onclick="resetGame()">最初からやり直す</button>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,332 @@
+:root {
+    --primary-color: #2c3e50;
+    --accent-color: #e74c3c;
+    --safe-color: #27ae60;
+    --bg-color: #2c3e50;
+    --card-bg: #ffffff;
+    --text-color: #333333;
+    --font-main: 'M PLUS Rounded 1c', sans-serif;
+    --dialog-bg: rgba(255, 255, 255, 0.95);
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 20px;
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    /* Precaution for padding issues */
+}
+
+.app-container {
+    width: 100%;
+    max-width: 800px;
+    background-color: #000;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border: 4px solid #fff;
+}
+
+header {
+    background-color: #34495e;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+/* Scene Area */
+main {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    /* Fixed height for game window feel on desktop */
+    background: #333;
+}
+
+/* Responsive adjustment for main area will be at the bottom, 
+   but we can also use viewport units here to be safe */
+
+.scene-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.scene-visual {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+}
+
+/* Visual Novel Dialog Box */
+.dialog-box {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background-color: var(--dialog-bg);
+    border-radius: 15px;
+    padding: 20px;
+    border: 4px solid #3498db;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.speaker-name {
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    background: #3498db;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.message-content {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    font-weight: bold;
+    color: #2c3e50;
+    min-height: 3.2em;
+    /* Ensure space for 2 lines */
+}
+
+/* Game Choices */
+.choices-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+/* Single column for mobile or long strings if needed, 
+   but grid 1fr 1fr is standard for VN */
+
+.btn {
+    border: none;
+    border-radius: 10px;
+    padding: 15px 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font-main);
+    text-align: left;
+    position: relative;
+    padding-left: 50px;
+    /* Space for A/B label */
+    background: #ecf0f1;
+    color: #2c3e50;
+    border: 2px solid #bdc3c7;
+}
+
+.btn:hover {
+    background: #d6eaf8;
+    transform: translateY(-2px);
+}
+
+.btn::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #3498db;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.btn-danger {
+    border-color: #e74c3c;
+}
+
+.btn-danger::before {
+    background: #e74c3c;
+}
+
+.btn-safe {
+    border-color: #27ae60;
+}
+
+.btn-safe::before {
+    background: #27ae60;
+}
+
+/* Advice Overlay */
+.advice-box {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    max-width: 300px;
+    background-color: rgba(255, 243, 205, 0.95);
+    border: 2px solid #ffeeba;
+    color: #856404;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1rem;
+    z-index: 20;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.hidden {
+    display: none !important;
+}
+
+footer {
+    background: #fff;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#reset-btn,
+#back-btn {
+    width: auto;
+    display: inline-block;
+    padding: 10px 30px;
+    font-size: 1rem;
+    padding-left: 30px;
+    /* Override standard btn padding */
+    text-align: center;
+}
+
+#reset-btn::before,
+#back-btn::before {
+    display: none;
+    content: none;
+}
+
+#back-btn {
+    background-color: #f39c12;
+    /* Orange for navigation */
+    color: white;
+    border-color: #e67e22;
+}
+
+/* =========================================
+   Responsive & Accessibility Updates (Mobile)
+   ========================================= */
+@media (max-width: 768px) {
+    body {
+        padding: 5px;
+        /* Maximize screen real estate */
+    }
+
+    .app-container {
+        border-width: 2px;
+        border-radius: 10px;
+        /* Reduce shadow on mobile usually looks cleaner */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    header {
+        padding: 10px;
+    }
+
+    header h1 {
+        font-size: 1rem;
+    }
+
+    /* Adjust Main Game Area Height for Mobile */
+    main {
+        height: auto;
+        aspect-ratio: 1 / 1.2;
+        /* Taller aspect ratio for portrait phones */
+        min-height: 400px;
+        max-height: 70vh;
+    }
+
+    /* Make dialog box easier to read and position */
+    .dialog-box {
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+        padding: 15px;
+        border-width: 3px;
+    }
+
+    .message-content {
+        font-size: 1.2rem;
+        /* Larger text for elderly visibility */
+        line-height: 1.4;
+    }
+
+    /* Stack choices vertically for easier tapping */
+    .choices-area {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    /* Larger buttons for easier touch */
+    .btn {
+        padding: 18px 15px;
+        padding-left: 55px;
+        /* Keep space for icon */
+        font-size: 1.15rem;
+    }
+
+    .btn::before {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+
+    /* Make footer buttons accessible */
+    footer {
+        flex-direction: column;
+        gap: 15px;
+        padding-bottom: 20px;
+    }
+
+    #back-btn,
+    #reset-btn {
+        width: 100%;
+        padding: 15px;
+        font-size: 1.1rem;
+    }
+}
