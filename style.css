@@ -197,6 +197,19 @@ main {
     z-index: 20;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     animation: slideIn 0.5s ease;
+    line-height: 1.5;
+}
+
+.advice-box.warning {
+    background-color: rgba(255, 230, 230, 0.95);
+    border-color: #e74c3c;
+    color: #c0392b;
+}
+
+.advice-box.safe {
+    background-color: rgba(230, 255, 230, 0.95);
+    border-color: #27ae60;
+    color: #1e8449;
 }
 
 @keyframes slideIn {
@@ -249,8 +262,38 @@ footer {
 }
 
 /* =========================================
-   Responsive & Accessibility Updates (Mobile)
+   Responsive & Accessibility Updates
    ========================================= */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+    body {
+        padding: 15px;
+    }
+
+    .app-container {
+        max-width: 700px;
+    }
+
+    header h1 {
+        font-size: 1.3rem;
+    }
+
+    main {
+        height: 500px;
+    }
+
+    .message-content {
+        font-size: 1.3rem;
+    }
+
+    .advice-box {
+        max-width: 280px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Mobile (up to 768px) */
 @media (max-width: 768px) {
     body {
         padding: 5px;
@@ -266,10 +309,18 @@ footer {
 
     header {
         padding: 10px;
+        flex-direction: column;
+        gap: 5px;
+        text-align: center;
     }
 
     header h1 {
-        font-size: 1rem;
+        font-size: 1.1rem;
+    }
+
+    header p {
+        font-size: 0.9rem;
+        margin: 0;
     }
 
     /* Adjust Main Game Area Height for Mobile */
@@ -277,8 +328,8 @@ footer {
         height: auto;
         aspect-ratio: 1 / 1.2;
         /* Taller aspect ratio for portrait phones */
-        min-height: 400px;
-        max-height: 70vh;
+        min-height: 450px;
+        max-height: 65vh;
     }
 
     /* Make dialog box easier to read and position */
@@ -287,13 +338,20 @@ footer {
         left: 10px;
         right: 10px;
         padding: 15px;
+        padding-top: 20px;
         border-width: 3px;
+    }
+
+    .speaker-name {
+        font-size: 1rem;
+        padding: 5px 15px;
+        top: -18px;
     }
 
     .message-content {
         font-size: 1.2rem;
         /* Larger text for elderly visibility */
-        line-height: 1.4;
+        line-height: 1.5;
     }
 
     /* Stack choices vertically for easier tapping */
@@ -308,6 +366,7 @@ footer {
         padding-left: 55px;
         /* Keep space for icon */
         font-size: 1.15rem;
+        min-height: 60px;
     }
 
     .btn::before {
@@ -316,11 +375,22 @@ footer {
         font-size: 1rem;
     }
 
+    /* Reposition advice box for mobile */
+    .advice-box {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        max-width: none;
+        font-size: 0.95rem;
+        padding: 12px;
+    }
+
     /* Make footer buttons accessible */
     footer {
         flex-direction: column;
-        gap: 15px;
-        padding-bottom: 20px;
+        gap: 10px;
+        padding: 15px 10px;
     }
 
     #back-btn,
@@ -328,5 +398,135 @@ footer {
         width: 100%;
         padding: 15px;
         font-size: 1.1rem;
+        min-height: 50px;
+    }
+}
+
+/* Small Mobile (up to 480px) */
+@media (max-width: 480px) {
+    body {
+        padding: 0;
+    }
+
+    .app-container {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+
+    header h1 {
+        font-size: 1rem;
+    }
+
+    header p {
+        font-size: 0.85rem;
+    }
+
+    main {
+        min-height: 400px;
+        max-height: 60vh;
+    }
+
+    .dialog-box {
+        bottom: 5px;
+        left: 5px;
+        right: 5px;
+        padding: 12px;
+        padding-top: 18px;
+    }
+
+    .speaker-name {
+        font-size: 0.9rem;
+        padding: 4px 12px;
+    }
+
+    .message-content {
+        font-size: 1.1rem;
+        line-height: 1.4;
+    }
+
+    .btn {
+        padding: 16px 12px;
+        padding-left: 50px;
+        font-size: 1.05rem;
+        min-height: 55px;
+    }
+
+    .btn::before {
+        width: 32px;
+        height: 32px;
+        font-size: 0.95rem;
+        left: 8px;
+    }
+
+    .advice-box {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    footer {
+        padding: 12px 8px;
+    }
+
+    #back-btn,
+    #reset-btn {
+        padding: 14px;
+        font-size: 1rem;
+    }
+}
+
+/* Landscape mode for mobile devices */
+@media (max-height: 600px) and (orientation: landscape) {
+    main {
+        height: auto;
+        min-height: 350px;
+        max-height: 75vh;
+    }
+
+    .dialog-box {
+        bottom: 5px;
+        padding: 10px;
+        padding-top: 15px;
+    }
+
+    .message-content {
+        font-size: 1rem;
+        line-height: 1.3;
+        min-height: 2em;
+    }
+
+    .choices-area {
+        margin-top: 5px;
+        gap: 8px;
+    }
+
+    .btn {
+        padding: 12px 10px;
+        padding-left: 45px;
+        font-size: 1rem;
+        min-height: 45px;
+    }
+
+    .btn::before {
+        width: 28px;
+        height: 28px;
+        font-size: 0.85rem;
+    }
+
+    .advice-box {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+}
+
+/* Enhanced touch targets for all interactive elements */
+@media (hover: none) and (pointer: coarse) {
+    .btn {
+        -webkit-tap-highlight-color: rgba(52, 152, 219, 0.3);
+        touch-action: manipulation;
+    }
+
+    .btn:active {
+        transform: scale(0.98);
     }
 }
