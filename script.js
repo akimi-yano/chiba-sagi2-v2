@@ -63,9 +63,18 @@ const flowData = {
         advice: "市役所がATMに誘導することは絶対にありません！",
         image: IMAGES.POLICE,
         choices: [
-            { text: "銀行を答える", next: "step_call_center_intro", style: "btn-danger" },
+            { text: "銀行を答える", next: "step_answer_bank", style: "btn-danger" },
             { text: "念のため、所属と連絡先を聞く", next: "step_ask_details", style: "btn-danger" },
             { text: "電話を切る", next: "end_hangup_safe", style: "btn-safe" }
+        ]
+    },
+    step_answer_bank: {
+        speaker: "あなた",
+        text: "銀行を答える",
+        advice: "銀行名を教えてしまいました。",
+        image: IMAGES.POLICE,
+        choices: [
+            { text: "銀行名を答える", next: "step_call_center_intro", style: "btn-danger" }
         ]
     },
     step_ask_details: {
@@ -74,9 +83,8 @@ const flowData = {
         advice: "相手は架空の部署や名前、デタラメな番号をスラスラと言って安心させようとします。",
         image: IMAGES.POLICE,
         choices: [
-            { text: "銀行を答える", next: "step_call_center_intro", style: "btn-danger" },
             { text: "一旦電話を切って、折り返し電話をかける", next: "step_pressure_callback", style: "btn-safe" },
-            { text: "電話を切る", next: "end_hangup_safe", style: "btn-safe" }
+            { text: "そのまま電話を続ける", next: "step_answer_bank", style: "btn-danger" }
         ]
     },
     step_pressure_callback: {
@@ -85,7 +93,7 @@ const flowData = {
         advice: "「お金が戻らない」と損する気持ちをあおって引き止めようとしたり、考える時間を与えないようにします。",
         image: IMAGES.POLICE,
         choices: [
-            { text: "やっぱり手続きをする", next: "step_bank_ask", style: "btn-danger" },
+            { text: "やっぱり手続きをする", next: "step_answer_bank", style: "btn-danger" },
             { text: "はい", next: "end_pressure_safe", style: "btn-safe" }
         ]
     },
